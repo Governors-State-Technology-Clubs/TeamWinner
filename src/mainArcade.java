@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import Classes.*;
+
 
 public class mainArcade {
     public static void main(String[] args) {
