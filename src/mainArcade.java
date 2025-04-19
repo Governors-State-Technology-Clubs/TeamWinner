@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import Classes.*;
+
 
 public class mainArcade {
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class mainArcade {
 
     switch (choice) {
         case 1:
-            
+            Classes.RandomNumberGenerator.main(null);
             break;
         case 2:
 
