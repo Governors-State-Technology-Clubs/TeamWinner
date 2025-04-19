@@ -25,7 +25,7 @@ public class mainArcade {
 
     switch (choice) {
         case 1:
-            
+            Classes.RandomNumberGenerator.main(null);
             break;
         case 2:
 

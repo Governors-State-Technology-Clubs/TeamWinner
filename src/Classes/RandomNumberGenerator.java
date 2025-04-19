@@ -1,7 +1,7 @@
 package Classes;
-
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 
 
 public class RandomNumberGenerator {
@@ -54,5 +54,20 @@ public class RandomNumberGenerator {
 
         frame.setVisible(true);
     }
+    
+    
 }
 
+// The NumberGame class has been moved to its own file.
+class NumberGame {
+    private int number;
+
+    public NumberGame() {
+        Random random = new Random();
+        this.number = random.nextInt(10) + 1; // Generate a number between 1 and 10
+    }
+
+    public int getNumber() {
+        return number;
+    }
+}
