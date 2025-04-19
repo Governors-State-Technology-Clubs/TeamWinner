@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import Classes.*;
 
 public class mainArcade {
     public static void main(String[] args) {
@@ -32,7 +31,7 @@ public class mainArcade {
             break;
 
         case 3:
-
+            Classes.mineSweeper.main(scanner);
             break;
 
         case 4:
