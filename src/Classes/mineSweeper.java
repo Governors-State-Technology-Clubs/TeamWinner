@@ -4,24 +4,43 @@ import java.util.*;
 
 
 public class mineSweeper {
+
     public static void main(Scanner scanner) {
-        int[][] gameBoard = {   // y, x
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        String[][] gameBoard = {   // y, x
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "}
         };
+        gameBoard = placeBombs(gameBoard, 10);
         printBoard(gameBoard);
         System.out.println("Hello World");
     }
 
-
+    public static String[][] placeBombs(String[][] gb, int b) //b = numb of bombs
+    {
+        Random rand = new Random();
+        System.out.println(rand);
+        
+        int count = 0;
+        while(count < b)
+        {
+            int r = rand.nextInt(gb.length);
+            int c = rand.nextInt(gb[0].length);
+            
+            if (gb[r][c].equals(" ")) {
+                gb[r][c] = "X";
+                count++;
+            }
+        }
+        return gb;
+    }
 //method to print game board
-    public static void printBoard(int[][] gb)
+    public static void printBoard(String[][] gb)
     {
         System.out.print("+");
         for(int i = 0; i < gb[0].length; i++)
@@ -35,9 +54,8 @@ public class mineSweeper {
             for(int j = 0; j < gb[0].length; j++)
             {
                 
-                if (gb[i][j] == 0) {
-                    System.out.print("   |");  //*INSERT ACTUAL THING TO PRINT */
-                }
+                    System.out.print(" "+ gb[i][j] +" |");
+                
                 
             }
         System.out.println();    
@@ -50,3 +68,19 @@ public class mineSweeper {
         }
     }
 }
+/* 
+class Node
+{
+
+    int xPos;
+    int yPos;
+    boolean isBomb;
+    boolean isFlag;
+    Node()
+    {
+
+    }
+
+
+}
+*/

@@ -11,8 +11,8 @@ public class mainArcade {
     System.out.println("Enter numbers from 1 to 6 to play the game");
 
     System.out.println("1. Guess the Number");
-    System.out.println("2. Minefield");
-    System.out.println("3. Hangman");
+    System.out.println("2. Hangman");
+    System.out.println("3. Minefield");
     System.out.println("4. Rock Paper Scissors");
     System.out.println("5. Word Scramble");
     System.out.println("6. ??");
@@ -24,7 +24,7 @@ public class mainArcade {
 
     switch (choice) {
         case 1:
-            
+            Classes.RandomNumberGenerator.main(null);
             break;
         case 2:
 
