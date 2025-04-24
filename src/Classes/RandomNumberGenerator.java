@@ -1,49 +1,19 @@
-package random.number.generator;
+package Classes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 public class RandomNumberGenerator {
 
-    public static void main(String[] args) {
-        showMainMenu();
-    }
+    private JFrame frame;
+    private NumberGame game;
 
-    public static void showMainMenu() {
-        JFrame menuFrame = new JFrame("Main Menu");
-        menuFrame.setSize(300, 150);
-        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuFrame.setLayout(new GridLayout(3, 1));
-
-        JLabel welcomeLabel = new JLabel("Welcome to the Number Guessing Game!", SwingConstants.CENTER);
-        JButton startButton = new JButton("Start Game");
-        JButton exitButton = new JButton("Exit");
-
-        startButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                menuFrame.dispose(); // close the menu
-                startGame(); // launch game
-            }
-        });
-
-        exitButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-        menuFrame.add(welcomeLabel);
-        menuFrame.add(startButton);
-        menuFrame.add(exitButton);
-
-        menuFrame.setVisible(true);
-    }
-
-    public static void startGame() {
-        JFrame frame = new JFrame("Guess the Number!");
+    public RandomNumberGenerator() {
+        frame = new JFrame("Guess the Number!");
         frame.setSize(300, 220);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JLabel label = new JLabel("Enter a number from 1 to 10", SwingConstants.CENTER);
         JTextField textField = new JTextField();
@@ -51,15 +21,15 @@ public class RandomNumberGenerator {
         JButton tryAgainButton = new JButton("Try Again");
         JButton endGameButton = new JButton("End Game");
 
-        NumberGame[] game = { new NumberGame() };
+        game = new NumberGame();
 
         guessButton.addActionListener(e -> {
             try {
                 int guess = Integer.parseInt(textField.getText());
-                if (guess == game[0].getNumber()) {
+                if (guess == game.getNumber()) {
                     label.setText("Correct! 🎉");
                 } else {
-                    label.setText("Wrong! It was " + game[0].getNumber());
+                    label.setText("Wrong! It was " + game.getNumber());
                 }
                 guessButton.setEnabled(false);
             } catch (NumberFormatException ex) {
@@ -68,15 +38,14 @@ public class RandomNumberGenerator {
         });
 
         tryAgainButton.addActionListener(e -> {
-            game[0] = new NumberGame();
+            game = new NumberGame();
             label.setText("Enter a number from 1 to 10");
             textField.setText("");
             guessButton.setEnabled(true);
         });
 
         endGameButton.addActionListener(e -> {
-            frame.dispose(); // close the game window
-            showMainMenu(); // return to menu
+            frame.dispose(); // Close window, return to arcade
         });
 
         frame.setLayout(new GridLayout(5, 1));
@@ -86,6 +55,45 @@ public class RandomNumberGenerator {
         frame.add(tryAgainButton);
         frame.add(endGameButton);
 
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public void waitUntilClosed() {
+        final Object lock = new Object();
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                synchronized(lock) {
+                    lock.notify();
+                }
+            }
+        });
+
+        synchronized(lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        RandomNumberGenerator rngGame = new RandomNumberGenerator();
+        rngGame.waitUntilClosed();  // arcade waits until game is closed
+    }
+
+    private class NumberGame {
+        private int number;
+
+        public NumberGame() {
+            Random random = new Random();
+            number = random.nextInt(10) + 1;
+        }
+
+        public int getNumber() {
+            return number;
+        }
     }
 }
