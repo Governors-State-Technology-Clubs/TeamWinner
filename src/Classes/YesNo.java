@@ -17,7 +17,7 @@ public class YesNo {
     public YesNo() {
         random = new Random();
         JFrame frame = new JFrame("Yes/No Guessing Game");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(400, 300);
         frame.setLayout(new FlowLayout());
 
@@ -93,5 +93,6 @@ public class YesNo {
 
     public static void main(String[] args) {
         new YesNo();
+        
     }
 }
