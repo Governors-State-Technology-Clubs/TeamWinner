@@ -13,7 +13,7 @@ public class mainArcade {
 
     System.out.println("1. Guess the Number");
     System.out.println("2. Minefield");
-    System.out.println("3. Hangman");
+    System.out.println("3. Yes Or No?");
     System.out.println("4. Rock Paper Scissors");
     System.out.println("5. Word Scramble");
     System.out.println("6. ??");
@@ -32,7 +32,7 @@ public class mainArcade {
             break;
 
         case 3:
-
+            Classes.YesNo.main(null);
             break;
 
         case 4:
