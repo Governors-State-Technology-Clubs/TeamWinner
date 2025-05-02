@@ -1,6 +1,8 @@
 package src;
 
 import java.util.Scanner;
+import Classes.YesNo;
+
 
 public class mainArcade {
     public static void main(String[] args) {
@@ -10,14 +12,13 @@ public class mainArcade {
 
     while (keepPlaying){
     System.out.println("Welcome to the Arcade!");
-    System.out.println("Enter numbers from 1 to 6 to play the game");
+    System.out.println("Enter numbers from 1 to 5 to play the game");
 
     System.out.println("1. Guess the Number");
-    System.out.println("2. Hangman");
-    System.out.println("3. Minefield");
-    System.out.println("4. Rock Paper Scissors");
-    System.out.println("5. Word Scramble");
-    System.out.println("6. ??");
+    System.out.println("2. Solitaire ");
+    System.out.println("3. Yes Or No?");
+    System.out.println("4. Word Scramble");
+    System.out.println("5. Mine Sweeper");
     System.out.print("Enter your choice: ");
 
     choice = scanner.nextInt();
@@ -33,19 +34,17 @@ public class mainArcade {
             break;
 
         case 3:
-            Classes.mineSweeper.main(scanner);
+            Classes.YesNo.main(null);
+
             break;
 
         case 4:
+            Classes.WordScramble.main(scanner);
 
             break;
 
         case 5:
-            Classes.WordScramble.main(scanner);
-            break;
-
-        case 6:
-
+            Classes.mineSweeper.main(scanner);
             break;
 
         default:
