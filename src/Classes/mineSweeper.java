@@ -68,33 +68,11 @@ public class mineSweeper {
         }
         gameState = "gameWon";
     }
-    public static void clearAway(Node[][] gb, int guessX, int guessY)
-    {
-        if(gb[guessX][guessY+1].getNumOfAdjacentBombs() != 0)
-        {
-            gb[guessX][guessY+1].setDug(true);
-            return;
-        }
-        if(gb[guessX-1][guessY].getNumOfAdjacentBombs() != 0)
-        {
-            gb[guessX-1][guessY].setDug(true);
-            return;
-        }
-        if(gb[guessX][guessY-1].getNumOfAdjacentBombs() != 0)
-        {
-            gb[guessX][guessY-1].setDug(true);
-            return;
-        }
-        if(gb[guessX+1][guessY].getNumOfAdjacentBombs() != 0)
-        {
-            gb[guessX+1][guessY].setDug(true);
-            return;
-        }
 
-    }
 
     public static void dig(Node node)
     {
+
         if(node.isBomb())
         {
             gameState = "gameLost";
