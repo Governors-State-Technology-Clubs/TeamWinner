@@ -1,4 +1,4 @@
-package Classes;
+package src.Classes;
 
 import java.util.*;
 
@@ -6,6 +6,7 @@ import java.util.*;
 public class mineSweeper {
 
     public static void main(Scanner scanner) {
+        boolean gameActive = true;
         String[][] gameBoard = {   // y, x
             {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
@@ -18,7 +19,13 @@ public class mineSweeper {
         };
         gameBoard = placeBombs(gameBoard, 10);
         printBoard(gameBoard);
-        System.out.println("Hello World");
+        while(gameActive)
+        {
+            System.out.println("What would you like to do?");
+            System.out.println("X to dig");
+            System.out.println("F to flag");
+
+        }
     }
 
     public static String[][] placeBombs(String[][] gb, int b) //b = numb of bombs
